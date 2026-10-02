@@ -9,6 +9,7 @@ local MainFrame = Instance.new("Frame")
 local TitleLabel = Instance.new("TextLabel")
 local HopButton = Instance.new("TextButton")
 local StatusLabel = Instance.new("TextLabel")
+local CloseButton = Instance.new("TextButton")
 local UICorner = Instance.new("UICorner")
 
 ScreenGui.Name = "DeltaHopGUI"
@@ -26,18 +27,30 @@ MainFrame.Parent = ScreenGui
 UICorner.CornerRadius = UDim.new(0, 12)
 UICorner.Parent = MainFrame
 
-TitleLabel.Size = UDim2.new(1, 0, 0, 40)
+TitleLabel.Size = UDim2.new(1, -30, 0, 40)
+TitleLabel.Position = UDim2.new(0, 10, 0, 0)
 TitleLabel.BackgroundTransparency = 1
-TitleLabel.Text = "DELTA HOPPER"
-TitleLabel.TextColor3 = Color3.fromRGB(0, 255, 127)
+TitleLabel.Text = "STEAL AN EGG HOP"
+TitleLabel.TextColor3 = Color3.fromRGB(255, 215, 0)
 TitleLabel.Font = Enum.Font.GothamBold
-TitleLabel.TextSize = 16
+TitleLabel.TextSize = 15
+TitleLabel.TextXAlignment = Enum.TextXAlignment.Left
 TitleLabel.Parent = MainFrame
+
+CloseButton.Name = "CloseButton"
+CloseButton.Size = UDim2.new(0, 30, 0, 30)
+CloseButton.Position = UDim2.new(1, -35, 0, 5)
+CloseButton.BackgroundTransparency = 1
+CloseButton.Text = "X"
+CloseButton.TextColor3 = Color3.fromRGB(255, 75, 75)
+CloseButton.Font = Enum.Font.GothamBold
+CloseButton.TextSize = 18
+CloseButton.Parent = MainFrame
 
 HopButton.Name = "HopButton"
 HopButton.Size = UDim2.new(0, 200, 0, 40)
 HopButton.Position = UDim2.new(0.5, -100, 0.45, -20)
-HopButton.BackgroundColor3 = Color3.fromRGB(0, 160, 240)
+HopButton.BackgroundColor3 = Color3.fromRGB(235, 100, 0)
 HopButton.Text = "Hop Server (<= 2 Nguoi)"
 HopButton.TextColor3 = Color3.fromRGB(255, 255, 255)
 HopButton.Font = Enum.Font.GothamBold
@@ -61,7 +74,7 @@ local function hopServer()
     StatusLabel.Text = "Dang quet danh sach..."
     StatusLabel.TextColor3 = Color3.fromRGB(255, 215, 0)
     
-    local url = "https://games.roblox.com/v1/games/" .. PlaceId .. "/servers/Public?sortOrder=Asc&limit=100"
+    local url = "https://roblox.com" .. PlaceId .. "/servers/Public?sortOrder=Asc&limit=100"
     local success, result = pcall(function()
         return game:HttpGet(url)
     end)
@@ -114,3 +127,6 @@ local function hopServer()
 end
 
 HopButton.MouseButton1Click:Connect(hopServer)
+CloseButton.MouseButton1Click:Connect(function()
+    ScreenGui:Destroy()
+end)
